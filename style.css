@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.screen-game>#logoGame {
+    width: 100%;
+    left: 50%;
+    right: 50%;
+}
+
+#start {
+    color: #fff;
+    width: 100%;
+    right: auto;
+    left: 50%;
+    right: 50%;
+    font-weight: bold;
+    border: solid #fff;
+    background-color: #f52720;
+}
+
+#start:hover {
+    color: #f52720;
+    border: solid #f52720;
+    background-color: #fff;
+}
