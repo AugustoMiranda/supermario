@@ -50,4 +50,4 @@ const loop = setInterval(() => {
 
 }, 10);
 
-document.addEventListener('ontouchstart', jump);
+document.addEventListener('keydown', jump);
