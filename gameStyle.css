@@ -70,6 +70,15 @@
     border-bottom: 2.5px solid rgb(114, 223, 114);
 }
 
+#button-jump {
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    background-color: red;
+}
+
 @keyframes pipe-animation {
 
     from {
