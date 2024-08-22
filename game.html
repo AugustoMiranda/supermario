@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <title>Mario Bros</title>
@@ -16,17 +16,79 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<div class="game-board">
+    <div class="game-board">
 
-    <img src="./img/clouds.png" class="clouds" alt="imagem nuvens">
-    <img src="" alt="" class="game-over" id="imageoption">
-    <img src="./img/mario.gif" class="mario" alt="imagem Mário">
-    <img src="./img/pipe.png" class="pipe" alt="imagem tubo verde">
-</div>
-    
+        <img src="./img/clouds.png" class="clouds" alt="imagem nuvens">
+        <img src="" alt="" class="game-over" id="imageoption">
+        <img src="./img/mario.gif" class="mario" alt="imagem Mário">
+        <img src="./img/pipe.png" class="pipe" alt="imagem tubo verde">
+    </div>
+
 
     <form action="">
         <input id="button-reiniciar" type="button" value="REINICIAR" onclick="history.go(0)" />
+    </form>
+
+    <p style="margin-bottom: 2em;"></p>
+
+    <form action="jump">
+        <input id="button-jump" type="button" value="↑ JUMP ↑" onclick="jump()" />
+
+        <script>
+            const mario = document.querySelector('.mario');
+            const pipe = document.querySelector('.pipe');
+
+            function jump() {
+                mario.classList.add('jump');
+
+                var audio = new Audio("./sound/MarioBros-Jump-Sound.mp3 ");
+
+                audio.oncanplaythrough = function () {
+                    audio.play();
+                }
+
+                setTimeout(() => {
+                    mario.classList.remove('jump');
+
+                }, 500);
+            }
+
+            const loop = setInterval(() => {
+                const pipePosition = pipe.offsetLeft;
+                const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
+
+                if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
+
+                    pipe.style.animation = 'none';
+                    pipe.style.left = `${pipePosition}px`;
+
+                    mario.style.animation = 'none';
+                    mario.style.bottom = `${marioPosition}px`;
+
+                    mario.src = './img/mariogame-over.png';
+                    mario.style.width = '75px'
+                    mario.style.marginLeft = '50px'
+
+                    $(document).ready(function () {
+                        $('#imageoption').attr('src', './img/game-over.png');
+                    });
+
+                    var audio = new Audio("./sound/gameOver.mp3");
+
+                    audio.oncanplaythrough = function () {
+                        audio.play();
+                    }
+
+                    clearInterval(loop);
+
+                }
+
+
+            }, 10);
+
+            document.addEventListener('onclick', jump);
+        </script>
+
     </form>
 
     <!-- Optional JavaScript -->
